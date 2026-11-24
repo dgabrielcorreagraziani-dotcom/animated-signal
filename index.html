@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a20">
+    <title>Semáforo inteligente</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="dashboard">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                <div><p class="eyebrow">Feira Científica 2026</p><h1>Semáforo inteligente booleano</h1></div>
+            </div>
+            <div class="toolbar" aria-label="Controles da simulação">
+                <button id="reset" type="button">Reiniciar</button>
+                <button id="pause" type="button">Pausar</button>
+                <button id="fullscreen" class="primary" type="button"><span aria-hidden="true">⛶</span> <span id="full-label">Tela cheia</span></button>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <section class="panel scene" aria-labelledby="scene-title">
+                <header class="scene-header">
+                    <h2 id="scene-title">Cruzamento urbano</h2>
+                    <span class="live" id="live">Simulação ativa</span>
+                </header>
+                <div class="map">
+                    <canvas id="city" role="img" aria-label="Vista aérea animada de um cruzamento com quatro faixas de pedestres, tráfego e semáforos."></canvas>
+                </div>
+                <footer class="map-footer">
+                    <span><i class="legend sensor"></i> Ponto de leitura</span>
+                    <span><i class="legend crossing"></i> Faixa de pedestres</span>
+                    <span class="counts"><b id="vehicles">0</b> veículos <span aria-hidden="true">·</span> <b id="people">0</b> travessias</span>
+                </footer>
+            </section>
+
+            <aside class="panel control" aria-labelledby="control-title">
+                <header class="control-header">
+                    <div><p class="eyebrow">Controlador</p><h2 id="control-title">Arduino</h2></div>
+                    <span class="cycle">CICLO <b id="cycle">01</b></span>
+                </header>
+                <div class="phase" id="phase">
+                    <div><p class="eyebrow">Fase atual</p><strong id="phase-title" aria-live="polite">Rua A liberada</strong></div>
+                    <div class="clock"><b id="elapsed">0,0</b> <span>s</span></div>
+                </div>
+                <div id="phase-track" class="phase-track" aria-label="Sequência do controlador"></div>
+                <div class="phase-detail"><code id="phase-code">A_VERDE</code><span id="phase-limit">5–15 s</span></div>
+
+                <div class="approaches">
+                    <section class="approach" id="A" aria-labelledby="title-A">
+                        <div class="approach-heading">
+                            <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+                            <div><h3 id="title-A">Rua A</h3><p id="signal-A">Verde</p></div>
+                            <span class="axis">Leste–oeste</span>
+                        </div>
+                        <div class="telemetry"><span>HC-SR04 A</span><strong id="distance-A">—</strong></div>
+                        <p class="reading" id="reading-A">Monitorando</p>
+                    </section>
+                    <section class="approach" id="B" aria-labelledby="title-B">
+                        <div class="approach-heading">
+                            <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+                            <div><h3 id="title-B">Rua B</h3><p id="signal-B">Vermelho</p></div>
+                            <span class="axis">Norte–sul</span>
+                        </div>
+                        <div class="telemetry"><span>HC-SR04 B</span><strong id="distance-B">—</strong></div>
+                        <p class="reading" id="reading-B">Monitorando</p>
+                    </section>
+                </div>
+                <div class="pedestrian" id="walking"><i aria-hidden="true"></i><span id="walk-label">Travessias fechadas</span></div>
+            </aside>
+        </div>
+
+        <footer class="dashboard-footer">
+            <span>Sensores simulados <span aria-hidden="true">·</span> Amostragem a cada 150 ms</span>
+            <span><kbd>Espaço</kbd> pausar <kbd>F</kbd> tela cheia</span>
+        </footer>
+    </main>
+</body>
+</html>
